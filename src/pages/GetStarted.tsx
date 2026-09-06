@@ -1,0 +1,25 @@
+import { Link } from 'react-router-dom';
+import '../styles/welcome.css'; // reuses .welcome__brand for the heading
+import '../styles/get-started.css';
+
+// Placeholder-only screen for the /get-started route. This file is meant
+// to be replaced entirely once the next stage of the app is built -
+// nothing here is shared by welcome.css, so swapping it out later is a
+// clean, single-file/route change. Ported from the original
+// get-started.html (inline <style> block migrated to get-started.css +
+// Tailwind utilities).
+export default function GetStarted() {
+  return (
+    <main className="get-started flex min-h-dvh flex-col items-center justify-center text-center">
+      <p className="get-started__eyebrow">Coming next</p>
+      <h1 className="welcome__brand get-started__title">This is where the app begins</h1>
+      <p className="get-started__body">
+        The cognitive games, memory tools, and daily activities for Arogya Intellect will live on
+        this screen.
+      </p>
+      <Link to="/" className="get-started__back inline-flex items-center no-underline">
+        ← Back to Welcome
+      </Link>
+    </main>
+  );
+}

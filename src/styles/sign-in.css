@@ -1,0 +1,134 @@
+/* ==========================================================================
+   Sign In / Sign Up
+   Shown after Welcome's "Get Started" CTA. Structural layout (flex,
+   min-h-dvh, centering) comes from Tailwind utilities on the <main> in
+   SignIn.tsx, matching the convention set in welcome.css/get-started.css.
+   ========================================================================== */
+
+.signin {
+  padding: var(--space-lg) var(--space-md);
+}
+
+.signin__composition {
+  max-width: var(--content-max);
+  gap: var(--space-sm);
+}
+
+.signin__logo-wrap {
+  width: clamp(4.5rem, 3.6rem + 4vw, 6.5rem);
+  margin-bottom: var(--space-2xs);
+}
+
+.signin__title {
+  font-family: var(--font-brand);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 1.35rem + 1.2vw, 2.25rem);
+  line-height: var(--lh-tight);
+  color: var(--color-pine);
+  letter-spacing: -0.01em;
+}
+
+.signin__subtitle {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-description);
+  color: var(--color-text-muted);
+  max-width: 28ch;
+  line-height: var(--lh-relaxed);
+}
+
+/* Colors/shape follow Google's own sign-in button guidance (white surface,
+   subtle border, full-color "G" mark) rather than the app's moss green, so
+   it reads unambiguously as "hand off to Google" rather than an in-app
+   action. */
+.signin__google {
+  margin-top: var(--space-sm);
+  gap: 0.75em;
+  min-height: var(--touch-target-min);
+  padding: 0.85em 1.75em;
+  border-radius: var(--radius-pill);
+  background-color: #fff;
+  border: 1.5px solid var(--color-sand);
+  color: var(--color-pine);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-button);
+  box-shadow: 0 6px 16px var(--color-cream-shadow);
+  transition:
+    background-color var(--duration-interaction) var(--ease-gentle),
+    transform var(--duration-interaction) var(--ease-gentle),
+    box-shadow var(--duration-interaction) var(--ease-gentle);
+}
+
+.signin__google:hover {
+  background-color: var(--color-bg-soft);
+  box-shadow: 0 8px 20px var(--color-cream-shadow);
+  transform: translateY(-1px);
+}
+
+.signin__google:active,
+.signin__google.is-pressed {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 4px 10px var(--color-cream-shadow);
+}
+
+.signin__google-icon {
+  width: 1.35em;
+  height: 1.35em;
+  flex-shrink: 0;
+}
+
+.signin__back {
+  margin-top: var(--space-xs);
+  color: var(--color-text-muted);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-tagline);
+  min-height: var(--touch-target-min);
+  padding: 0.5em 1em;
+}
+
+.signin__back:hover {
+  color: var(--color-pine);
+}
+
+/* ==========================================================================
+   Entrance motion - same gentle staggered rise as the Welcome page.
+   ========================================================================== */
+
+.signin__composition > * {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: signin-rise var(--duration-entrance) var(--ease-gentle) forwards;
+}
+
+.signin__composition > *:nth-child(1) { animation-delay: 0ms; }
+.signin__composition > *:nth-child(2) { animation-delay: 80ms; }
+.signin__composition > *:nth-child(3) { animation-delay: 160ms; }
+.signin__composition > *:nth-child(4) { animation-delay: 260ms; }
+.signin__composition > *:nth-child(5) { animation-delay: 340ms; }
+
+@keyframes signin-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signin__composition > * {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+@media (min-width: 48rem) {
+  .signin {
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  .signin__composition {
+    gap: var(--space-md);
+  }
+}

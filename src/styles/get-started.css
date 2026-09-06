@@ -1,0 +1,45 @@
+/* ==========================================================================
+   Get Started (placeholder)
+
+   This screen is a stand-in - see the comment in GetStarted.tsx. As with
+   welcome.css, structural/static layout lives as Tailwind utility classes
+   in the component; only the design-token-driven typography and colors
+   stay here.
+   ========================================================================== */
+
+.get-started {
+  gap: var(--space-sm);
+  padding: var(--space-lg) var(--space-md);
+}
+
+.get-started__eyebrow {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-tagline);
+  color: var(--color-river);
+}
+
+/* Combined selector (rather than .get-started__title alone) so this wins
+   over .welcome__brand's font-size regardless of which stylesheet the
+   bundler happens to load first. */
+.get-started__title.welcome__brand {
+  font-size: var(--fs-tagline);
+}
+
+.get-started__body {
+  max-width: 32ch;
+  font-size: var(--fs-description);
+  color: var(--color-text-muted);
+}
+
+.get-started__back {
+  margin-top: var(--space-sm);
+  min-height: var(--touch-target-min);
+  padding: 0.75em 1.5em;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--color-sand);
+  color: var(--color-pine);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-button);
+}

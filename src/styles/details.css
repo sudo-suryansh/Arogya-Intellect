@@ -1,0 +1,204 @@
+/* ==========================================================================
+   Details (name / age / gender)
+   Unlike Welcome/SignIn, this page holds a real form, so it deliberately
+   does NOT force a fixed 100dvh + hidden overflow - on-screen keyboards
+   and longer content should scroll naturally rather than get clipped
+   mid-form.
+   ========================================================================== */
+
+.details {
+  padding: var(--space-lg) var(--space-md);
+}
+
+.details__composition {
+  max-width: var(--content-max);
+  gap: var(--space-sm);
+}
+
+.details__logo-wrap {
+  width: clamp(3.5rem, 2.9rem + 3vw, 5rem);
+  margin-bottom: var(--space-2xs);
+}
+
+.details__title {
+  font-family: var(--font-brand);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  line-height: var(--lh-tight);
+  color: var(--color-pine);
+  letter-spacing: -0.01em;
+}
+
+.details__subtitle {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-description);
+  color: var(--color-text-muted);
+  max-width: 30ch;
+  line-height: var(--lh-relaxed);
+}
+
+.details__form {
+  width: 100%;
+  gap: var(--space-sm);
+  margin-top: var(--space-xs);
+  text-align: left;
+}
+
+.details__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  width: 100%;
+}
+
+.details__label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-tagline);
+  color: var(--color-pine);
+}
+
+.details__input {
+  width: 100%;
+  min-height: var(--touch-target-min);
+  padding: 0.75em 1em;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--color-sand);
+  background-color: var(--color-bg-soft);
+  color: var(--color-pine);
+  font-family: var(--font-body);
+  font-size: var(--fs-description);
+  transition:
+    border-color var(--duration-interaction) var(--ease-gentle),
+    box-shadow var(--duration-interaction) var(--ease-gentle);
+}
+
+.details__input:focus-visible {
+  outline: none;
+  border-color: var(--color-river);
+  box-shadow: 0 0 0 3px var(--color-moss-light);
+}
+
+.details__select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%232E6E86'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1em center;
+  background-size: 1.1em;
+  padding-right: 2.5em;
+}
+
+.details__pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.details__pill {
+  min-height: var(--touch-target-min);
+  padding: 0.6em 1.25em;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--color-sand);
+  background-color: var(--color-bg-soft);
+  color: var(--color-pine);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-button);
+  cursor: pointer;
+  transition:
+    background-color var(--duration-interaction) var(--ease-gentle),
+    border-color var(--duration-interaction) var(--ease-gentle),
+    color var(--duration-interaction) var(--ease-gentle),
+    transform var(--duration-interaction) var(--ease-gentle);
+}
+
+.details__pill:hover {
+  border-color: var(--color-river);
+}
+
+.details__pill.is-selected {
+  background-color: var(--color-moss);
+  border-color: var(--color-moss);
+  color: #fff;
+}
+
+.details__pill:active {
+  transform: scale(0.97);
+}
+
+.details__continue {
+  margin-top: var(--space-sm);
+  min-height: var(--touch-target-min);
+  padding: 0.9em 2.1em;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-moss);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-button);
+  box-shadow: 0 6px 16px var(--color-cream-shadow);
+  align-self: center;
+  transition:
+    background-color var(--duration-interaction) var(--ease-gentle),
+    transform var(--duration-interaction) var(--ease-gentle),
+    box-shadow var(--duration-interaction) var(--ease-gentle),
+    opacity var(--duration-interaction) var(--ease-gentle);
+}
+
+.details__continue:hover {
+  background-color: var(--color-moss-dark);
+  transform: translateY(-1px);
+}
+
+.details__continue:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.details__continue.is-disabled {
+  background-color: var(--color-sand);
+  color: var(--color-text-muted);
+  box-shadow: none;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Entrance motion
+   ========================================================================== */
+
+.details__composition > * {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: details-rise var(--duration-entrance) var(--ease-gentle) forwards;
+}
+
+.details__composition > *:nth-child(1) { animation-delay: 0ms; }
+.details__composition > *:nth-child(2) { animation-delay: 80ms; }
+.details__composition > *:nth-child(3) { animation-delay: 160ms; }
+.details__composition > *:nth-child(4) { animation-delay: 260ms; }
+
+@keyframes details-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .details__composition > * {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+@media (min-width: 48rem) {
+  .details {
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  .details__composition {
+    gap: var(--space-md);
+  }
+}
