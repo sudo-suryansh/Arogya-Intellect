@@ -1,0 +1,44 @@
+{
+  "common": {
+    "appName": "Fast6",
+    "continue": "আগবাঢ়ক",
+    "back": "উভতি যাওক"
+  },
+  "signin": {
+    "title": "আহক আপোনাক ছেট আপ কৰোঁ",
+    "subtitle": "আপোনাৰ Google একাউণ্টৰ জৰিয়তে সুৰক্ষিতভাৱে ছাইন আপ কৰক - নতুন পাছৱৰ্ড মনত ৰখাৰ প্ৰয়োজন নাই।",
+    "google": "Google ৰ জৰিয়তে আগবাঢ়ক"
+  },
+  "language": {
+    "title": "আপোনাৰ ভাষা বাছক",
+    "subtitle": "আপুনি আটাইতকৈ সহজ অনুভৱ কৰা ভাষাটো বাছক",
+    "continue": "আগবাঢ়ক"
+  },
+  "settings": {
+    "title": "ছেটিংছ",
+    "language": "ভাষা",
+    "close": "বন্ধ কৰক",
+    "signOut": "ছাইন আউট কৰক"
+  },
+  "details": {
+    "title": "আপোনাৰ বিষয়ে অলপ কওক",
+    "subtitle": "ই আমাক আপোনাৰ বাবে Arogya Intellect ব্যক্তিগতকৃত কৰাত সহায় কৰে।",
+    "nameLabel": "নাম",
+    "namePlaceholder": "আপোনাৰ নাম",
+    "ageLabel": "বয়স",
+    "agePlaceholder": "আপোনাৰ বয়স বাছক",
+    "genderLabel": "লিংগ",
+    "genders": {
+      "female": "মহিলা",
+      "male": "পুৰুষ",
+      "preferNotToSay": "কব নোখোজে"
+    },
+    "continue": "আগবাঢ়ক"
+  },
+  "getStarted": {
+    "eyebrow": "পৰৱৰ্তী পৰ্যায়ত",
+    "title": "এইখিনিতেই এপ্‌টো আৰম্ভ হয়",
+    "body": "Arogya Intellect ৰ কগনিটিভ গেম, স্মৃতি সঁজুলি আৰু দৈনন্দিন কাৰ্যকলাপ এই স্ক্ৰীনখনত থাকিব।",
+    "back": "← স্বাগতম পৃষ্ঠালৈ উভতি যাওক"
+  }
+}

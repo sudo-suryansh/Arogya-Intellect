@@ -5,9 +5,8 @@ import bottomLandscape from '../assets/bottom.png';
 import assameseIcon from '../assets/lang-icons/assamese.svg';
 import hindiIcon from '../assets/lang-icons/hindi.svg';
 import englishIcon from '../assets/lang-icons/english.svg';
+import { useLanguage, type LanguageCode } from '../i18n/LanguageContext';
 import '../styles/language.css';
-
-type LanguageCode = 'as' | 'en' | 'hi';
 
 const LANGUAGES: { code: LanguageCode; nativeName: string; englishName: string; icon: string }[] = [
   { code: 'as', nativeName: 'অসমীয়া', englishName: 'Assamese', icon: assameseIcon },
@@ -16,21 +15,21 @@ const LANGUAGES: { code: LanguageCode; nativeName: string; englishName: string; 
 ];
 
 // Language selection screen - sits between SignIn ("Continue with Google")
-// and Details (name/age/gender). UI ONLY for now: picking a card just sets
-// local state below. It does NOT call i18n.changeLanguage() yet - see the
-// TODO in handleContinue, which is exactly where that call belongs once
-// src/i18n is wired in.
+// and Details (name/age/gender). Picking a card sets local state below;
+// hitting Continue is what actually commits the choice to LanguageContext
+// (localStorage + document.lang + every t() call app-wide), which is also
+// what flips SettingsMenu on for every page from here on.
 export default function Language() {
   const [selected, setSelected] = useState<LanguageCode | null>(null);
   const isComplete = selected !== null;
+  const { setLanguage } = useLanguage();
 
   const handleContinue = (e: React.MouseEvent) => {
     if (!isComplete) {
       e.preventDefault();
       return;
     }
-    // TODO: once i18n is wired in, call i18n.changeLanguage(selected) here,
-    // before/instead of relying on route navigation alone.
+    setLanguage(selected, true);
   };
 
   return (

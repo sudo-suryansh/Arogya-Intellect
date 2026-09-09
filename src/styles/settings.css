@@ -1,0 +1,176 @@
+/* ==========================================================================
+   Settings icon + language switcher
+
+   Fixed to the top-right corner, above everything (z-index above the
+   app-shell team logo). Only ever mounted once languageSelected is true -
+   see SettingsMenu.tsx - so it naturally appears from the Details page
+   onward and stays available on every page after that.
+   ========================================================================== */
+
+.settings-menu {
+  position: fixed;
+  top: max(0.85rem, env(safe-area-inset-top));
+  right: max(0.85rem, env(safe-area-inset-right));
+  z-index: 40;
+}
+
+.settings-menu__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(2.25rem, 2rem + 1vw, 2.75rem);
+  height: clamp(2.25rem, 2rem + 1vw, 2.75rem);
+  border: 1.5px solid var(--color-sand);
+  border-radius: 50%;
+  background-color: var(--color-bg-soft);
+  box-shadow: 0 4px 12px var(--color-cream-shadow);
+  cursor: pointer;
+  transition:
+    box-shadow var(--duration-interaction) var(--ease-gentle),
+    transform var(--duration-interaction) var(--ease-gentle);
+}
+
+.settings-menu__trigger:hover {
+  box-shadow: 0 6px 16px var(--color-cream-shadow);
+}
+
+.settings-menu__trigger:active {
+  transform: scale(0.94);
+}
+
+.settings-menu__trigger img {
+  width: 55%;
+  height: 55%;
+  object-fit: contain;
+}
+
+.settings-menu__panel {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 11rem;
+  border: 1.5px solid var(--color-sand);
+  border-radius: 1rem;
+  background-color: var(--color-bg-soft);
+  box-shadow: 0 8px 24px var(--color-cream-shadow);
+  padding: 0.6rem;
+  animation: settings-panel-rise 0.15s ease-out;
+}
+
+@keyframes settings-panel-rise {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .settings-menu__panel {
+    animation: none;
+  }
+}
+
+.settings-menu__heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  margin: 0.2rem 0.4rem 0.5rem;
+}
+
+.settings-menu__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.settings-menu__option {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  border: 0;
+  border-radius: 0.65rem;
+  background: transparent;
+  padding: 0.5rem 1.6rem 0.5rem 0.6rem;
+  min-height: var(--touch-target-min);
+  cursor: pointer;
+  text-align: left;
+  transition: background-color var(--duration-interaction) var(--ease-gentle);
+}
+
+.settings-menu__option:hover {
+  background-color: var(--color-bg);
+}
+
+.settings-menu__option.is-active {
+  background-color: var(--color-moss-light);
+}
+
+.settings-menu__option-native {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-pine);
+}
+
+.settings-menu__option-english {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+.settings-menu__check {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-moss);
+  font-weight: 700;
+}
+
+.settings-menu__divider {
+  height: 1px;
+  margin: 0.5rem 0.2rem;
+  background-color: var(--color-sand);
+  border: 0;
+}
+
+.settings-menu__signout {
+  width: 100%;
+  border: 0;
+  border-radius: 0.65rem;
+  background: transparent;
+  padding: 0.5rem 0.6rem;
+  min-height: var(--touch-target-min);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--duration-interaction) var(--ease-gentle),
+    color var(--duration-interaction) var(--ease-gentle);
+}
+
+.settings-menu__signout:hover {
+  background-color: var(--color-bg);
+  color: var(--color-pine);
+}
+
+@media (min-width: 48rem) {
+  .settings-menu {
+    top: max(1.25rem, env(safe-area-inset-top));
+    right: max(1.25rem, env(safe-area-inset-right));
+  }
+}

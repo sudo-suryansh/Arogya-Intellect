@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../i18n/LanguageContext';
 import '../styles/welcome.css'; // reuses .welcome__brand for the heading
 import '../styles/get-started.css';
 
@@ -9,16 +10,15 @@ import '../styles/get-started.css';
 // get-started.html (inline <style> block migrated to get-started.css +
 // Tailwind utilities).
 export default function GetStarted() {
+  const { t } = useLanguage();
+
   return (
     <main className="get-started flex min-h-dvh flex-col items-center justify-center text-center">
-      <p className="get-started__eyebrow">Coming next</p>
-      <h1 className="welcome__brand get-started__title">This is where the app begins</h1>
-      <p className="get-started__body">
-        The cognitive games, memory tools, and daily activities for Arogya Intellect will live on
-        this screen.
-      </p>
+      <p className="get-started__eyebrow">{t('getStarted.eyebrow')}</p>
+      <h1 className="welcome__brand get-started__title">{t('getStarted.title')}</h1>
+      <p className="get-started__body">{t('getStarted.body')}</p>
       <Link to="/" className="get-started__back inline-flex items-center no-underline">
-        ← Back to Welcome
+        {t('getStarted.back')}
       </Link>
     </main>
   );

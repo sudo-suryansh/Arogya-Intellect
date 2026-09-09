@@ -1,0 +1,44 @@
+{
+  "common": {
+    "appName": "Fast6",
+    "continue": "Continue",
+    "back": "Back"
+  },
+  "signin": {
+    "title": "Let's get you set up",
+    "subtitle": "Sign up securely with your Google account - no new passwords to remember.",
+    "google": "Continue with Google"
+  },
+  "language": {
+    "title": "Choose Your Language",
+    "subtitle": "Select the language you are most comfortable with",
+    "continue": "Continue"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "close": "Close",
+    "signOut": "Sign out"
+  },
+  "details": {
+    "title": "Tell us a little about you",
+    "subtitle": "This helps us personalize Arogya Intellect for you.",
+    "nameLabel": "Name",
+    "namePlaceholder": "Your name",
+    "ageLabel": "Age",
+    "agePlaceholder": "Select your age",
+    "genderLabel": "Gender",
+    "genders": {
+      "female": "Female",
+      "male": "Male",
+      "preferNotToSay": "Prefer not to say"
+    },
+    "continue": "Continue"
+  },
+  "getStarted": {
+    "eyebrow": "Coming next",
+    "title": "This is where the app begins",
+    "body": "The cognitive games, memory tools, and daily activities for Arogya Intellect will live on this screen.",
+    "back": "← Back to Welcome"
+  }
+}

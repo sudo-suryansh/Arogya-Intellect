@@ -1,0 +1,44 @@
+{
+  "common": {
+    "appName": "Fast6",
+    "continue": "जारी रखें",
+    "back": "वापस"
+  },
+  "signin": {
+    "title": "चलिए आपको सेट अप करते हैं",
+    "subtitle": "अपने Google खाते से सुरक्षित रूप से साइन अप करें - नए पासवर्ड याद रखने की जरूरत नहीं।",
+    "google": "Google से जारी रखें"
+  },
+  "language": {
+    "title": "अपनी भाषा चुनें",
+    "subtitle": "वह भाषा चुनें जिसमें आप सबसे सहज हैं",
+    "continue": "जारी रखें"
+  },
+  "settings": {
+    "title": "सेटिंग्स",
+    "language": "भाषा",
+    "close": "बंद करें",
+    "signOut": "साइन आउट करें"
+  },
+  "details": {
+    "title": "हमें अपने बारे में थोड़ा बताएं",
+    "subtitle": "इससे हमें Arogya Intellect को आपके लिए व्यक्तिगत बनाने में मदद मिलती है।",
+    "nameLabel": "नाम",
+    "namePlaceholder": "आपका नाम",
+    "ageLabel": "उम्र",
+    "agePlaceholder": "अपनी उम्र चुनें",
+    "genderLabel": "लिंग",
+    "genders": {
+      "female": "महिला",
+      "male": "पुरुष",
+      "preferNotToSay": "बताना नहीं चाहते"
+    },
+    "continue": "जारी रखें"
+  },
+  "getStarted": {
+    "eyebrow": "आगे आ रहा है",
+    "title": "यहीं से ऐप की शुरुआत होती है",
+    "body": "Arogya Intellect के लिए कॉग्निटिव गेम्स, मेमोरी टूल्स और दैनिक गतिविधियाँ इसी स्क्रीन पर होंगी।",
+    "back": "← वापस स्वागत पृष्ठ पर"
+  }
+}
