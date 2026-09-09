@@ -1,25 +1,34 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../i18n/LanguageContext';
+import { resetProgress } from '../progress';
 import '../styles/welcome.css'; // reuses .welcome__brand for the heading
 import '../styles/get-started.css';
 
-// Placeholder-only screen for the /get-started route. This file is meant
-// to be replaced entirely once the next stage of the app is built -
-// nothing here is shared by welcome.css, so swapping it out later is a
-// clean, single-file/route change. Ported from the original
-// get-started.html (inline <style> block migrated to get-started.css +
-// Tailwind utilities).
+// Reached via the profile icon on Home. No account management yet - the
+// only real action here is signing out, which mirrors SettingsMenu's
+// handleSignOut: reset onboarding position (so reopening "/" doesn't
+// bounce straight back), clear the languageSelected gate (so SettingsMenu
+// hides again until Language is completed once more), then route back to
+// Welcome. Reuses the settings.signOut string rather than adding a new
+// translation key for the same label.
 export default function GetStarted() {
-  const { t } = useLanguage();
+  const { t, clearSelection } = useLanguage();
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    resetProgress();
+    clearSelection();
+    navigate('/', { replace: true });
+  };
 
   return (
     <main className="get-started flex min-h-dvh flex-col items-center justify-center text-center">
       <p className="get-started__eyebrow">{t('getStarted.eyebrow')}</p>
       <h1 className="welcome__brand get-started__title">{t('getStarted.title')}</h1>
       <p className="get-started__body">{t('getStarted.body')}</p>
-      <Link to="/" className="get-started__back inline-flex items-center no-underline">
-        {t('getStarted.back')}
-      </Link>
+      <button type="button" className="get-started__signout" onClick={handleSignOut}>
+        {t('settings.signOut')}
+      </button>
     </main>
   );
 }

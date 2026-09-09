@@ -39,6 +39,53 @@
     "eyebrow": "Coming next",
     "title": "This is where the app begins",
     "body": "The cognitive games, memory tools, and daily activities for Arogya Intellect will live on this screen.",
+    "home": "Open Home",
     "back": "← Back to Welcome"
-  }
+  },
+  "home": {
+    "greeting": {
+      "morning": "Good Morning",
+      "afternoon": "Good Afternoon",
+      "evening": "Good Evening"
+    },
+    "subtitle": "Let's make today a brighter day",
+    "games": "Games",
+    "reminders": "Reminders",
+    "remember": "Remember?",
+    "comingSoon": "More features coming in the next version",
+    "profile": "Profile",
+    "actionsLabel": "Quick actions"
+  },
+"reminders": {
+  "back": "Back",
+  "title": "Reminders",
+  "subtitle": "Set a reminder and we'll help you remember.",
+  "addReminder": "Add Reminder",
+  "stepOf": "Step {n} of 3",
+  "step1Question": "What's this reminder for?",
+  "step2Question": "Which day should we remind you?",
+  "step3Question": "What time?",
+  "titlePlaceholder": "e.g. Take medicine",
+  "next": "Next",
+  "save": "Save reminder",
+  "listLabel": "Your reminders",
+  "emptyState": "No reminders yet. Tap Add Reminder to make one.",
+  "removeLabel": "Remove reminder"
+},
+"remember": {
+  "back": "Back",
+  "stepOf": "Question {n} of 2",
+  "photoQuestion": "What is this?",
+  "photoPlaceholder": "Type your answer",
+  "check": "Check",
+  "tryAgain": "Not quite — take another look and try again.",
+  "gandhiQuestion": "When is Gandhi Jayanti?",
+  "gandhi": {
+    "oct2": "2 October",
+    "aug15": "15 August",
+    "jan26": "26 January",
+    "nov14": "14 November"
+  },
+  "wellDone": "Well done!"
+}
 }

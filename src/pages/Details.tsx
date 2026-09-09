@@ -88,13 +88,20 @@ export default function Details() {
           </div>
 
           <Link
-            to={isComplete ? '/get-started' : '#'}
+            to={isComplete ? '/home' : '#'}
             aria-disabled={!isComplete}
             className={`details__continue inline-flex items-center justify-center no-underline${
               isComplete ? '' : ' is-disabled'
             }`}
             onClick={(e) => {
-              if (!isComplete) e.preventDefault();
+              if (!isComplete) {
+                e.preventDefault();
+                return;
+              }
+              // No backend yet - stash the name locally so Home.tsx's
+              // greeting has something to read. Swap for a real save
+              // once Details starts persisting to a backend.
+              window.localStorage.setItem('fast6.userName', name.trim());
             }}
           >
             {t('details.continue')}

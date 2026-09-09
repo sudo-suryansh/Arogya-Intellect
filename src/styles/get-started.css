@@ -1,10 +1,10 @@
 /* ==========================================================================
    Get Started (placeholder)
 
-   This screen is a stand-in - see the comment in GetStarted.tsx. As with
-   welcome.css, structural/static layout lives as Tailwind utility classes
-   in the component; only the design-token-driven typography and colors
-   stay here.
+   Reached via the profile icon on Home - see the comment in
+   GetStarted.tsx. As with welcome.css, structural/static layout lives as
+   Tailwind utility classes in the component; only the design-token-driven
+   typography and colors stay here.
    ========================================================================== */
 
 .get-started {
@@ -32,14 +32,34 @@
   color: var(--color-text-muted);
 }
 
-.get-started__back {
+/* Primary (and only) action on this screen, so it's filled rather than
+   outlined - previously .get-started__back was the sole nav option and
+   stayed low-emphasis on purpose; sign-out deserves to read as the CTA. */
+.get-started__signout {
   margin-top: var(--space-sm);
   min-height: var(--touch-target-min);
-  padding: 0.75em 1.5em;
+  padding: 0.75em 1.75em;
   border-radius: var(--radius-pill);
-  border: 2px solid var(--color-sand);
-  color: var(--color-pine);
+  border: none;
+  background-color: var(--color-moss);
+  color: #fff;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: var(--fs-button);
+  box-shadow: 0 6px 16px var(--color-cream-shadow);
+  transition:
+    background-color var(--duration-interaction) var(--ease-gentle),
+    transform var(--duration-interaction) var(--ease-gentle),
+    box-shadow var(--duration-interaction) var(--ease-gentle);
+}
+
+.get-started__signout:hover {
+  background-color: var(--color-moss-dark);
+  box-shadow: 0 8px 20px var(--color-cream-shadow);
+  transform: translateY(-1px);
+}
+
+.get-started__signout:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 4px 10px var(--color-cream-shadow);
 }

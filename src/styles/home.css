@@ -1,0 +1,199 @@
+/* ==========================================================================
+   Home (post-onboarding dashboard)
+   Structural layout (flex, min-h-dvh, centering) comes from Tailwind
+   utilities on the <main> in Home.tsx, matching sign-in.css's convention.
+
+   Every vertical measurement below (padding, gaps, button/icon sizes) is
+   vh-clamped rather than a flat rem value - on a short/wide desktop
+   window a flat-rem layout was taller than the viewport, and because the
+   page intentionally has no scrollbar (overflow: hidden, matching every
+   other screen's "fit in one view" rule), that meant the bottom action
+   button and the "more coming" line got clipped. Scaling with vh keeps
+   everything inside 100dvh at any window shape instead.
+
+   Type sizes on this page run larger than the token defaults
+   (--fs-description, --fs-button, --fs-tagline) - this is the app's main
+   elderly-facing screen, so legibility outweighs matching the smaller
+   onboarding-screen scale.
+   ========================================================================== */
+
+.home {
+  padding: clamp(1rem, 3vh, 2.25rem) clamp(1.25rem, 4vw, 3rem) clamp(1rem, 3vh, 2rem);
+  gap: clamp(0.75rem, 2vh, 1.5rem);
+}
+
+.home__profile-btn {
+  position: fixed;
+  top: max(0.85rem, env(safe-area-inset-top));
+  right: calc(max(0.85rem, env(safe-area-inset-right)) + clamp(2.25rem, 2rem + 1vw, 2.75rem) + 0.5rem);
+  width: clamp(2.25rem, 2rem + 1vw, 2.75rem);
+  height: clamp(2.25rem, 2rem + 1vw, 2.75rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--color-sand);
+  border-radius: 50%;
+  background-color: var(--color-bg-soft);
+  box-shadow: 0 4px 12px var(--color-cream-shadow);
+  color: var(--color-pine);
+  transition:
+    box-shadow var(--duration-interaction) var(--ease-gentle),
+    transform var(--duration-interaction) var(--ease-gentle);
+}
+
+.home__profile-btn svg { width: 55%; height: 55%; }
+.home__profile-btn:hover { box-shadow: 0 6px 16px var(--color-cream-shadow); }
+.home__profile-btn:active { transform: scale(0.94); }
+
+.home__composition {
+  max-width: 36rem;
+  width: 100%;
+  gap: clamp(0.5rem, 1.4vh, 1rem);
+  margin-top: clamp(2.75rem, 7vh, 4rem); /* clears the fixed profile/gear buttons */
+}
+
+.home__greeting {
+  font-family: var(--font-brand);
+  font-weight: 800;
+  font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
+  line-height: var(--lh-tight);
+  color: var(--color-pine);
+  letter-spacing: -0.01em;
+}
+
+.home__subtitle {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.3rem, 1.2rem + 0.5vw, 1.6rem);
+  color: var(--color-river);
+  max-width: 30ch;
+}
+
+.home__actions { gap: clamp(0.5rem, 1.6vh, 1.25rem); margin-top: clamp(0.5rem, 1.6vh, 1rem); }
+
+/* Bigger, squarer touch targets than a pill - rounded-rect rather than
+   fully rounded. Height/padding are vh-clamped (see file header) so three
+   of these plus the heading still fit one screen without scrolling. */
+.home__action {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: clamp(3.75rem, 8.5vh, 5.25rem);
+  padding: clamp(0.6em, 1.4vh, 1.1em) 1.4em;
+  border-radius: 1.5rem;
+  background-color: var(--color-bg-soft);
+  border: 1.5px solid var(--color-sand);
+  box-shadow: 0 6px 16px var(--color-cream-shadow);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.55rem);
+  color: var(--color-pine);
+  transition: background-color var(--duration-interaction) var(--ease-gentle),
+    transform var(--duration-interaction) var(--ease-gentle),
+    box-shadow var(--duration-interaction) var(--ease-gentle);
+}
+
+.home__action:hover { transform: translateY(-1px); box-shadow: 0 8px 20px var(--color-cream-shadow); }
+.home__action:active { transform: translateY(0) scale(0.98); box-shadow: 0 4px 10px var(--color-cream-shadow); }
+
+/* Squarish rounded tile instead of a circle, sized with the same vh clamp
+   as the button itself so it scales down in step on shorter viewports. */
+.home__action-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(2.75rem, 6vh, 3.75rem);
+  height: clamp(2.75rem, 6vh, 3.75rem);
+  border-radius: 1.1rem;
+  background-color: var(--color-moss);
+  flex-shrink: 0;
+}
+
+/* No color filter - these render in the icons' own original colors
+   rather than being forced to white. If an icon disappears against the
+   moss-green tile, that specific SVG needs a light-enough palette (or a
+   white background variant) rather than a blanket filter here. */
+.home__action-icon {
+  width: clamp(1.6rem, 3.8vh, 2.25rem);
+  height: clamp(1.6rem, 3.8vh, 2.25rem);
+}
+
+.home__action-label { flex: 1; text-align: left; }
+.home__action-chevron { width: 1.4rem; height: 1.4rem; color: var(--color-text-muted); flex-shrink: 0; }
+
+.home__coming-soon {
+  margin-top: auto;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.1rem, 1rem + 0.35vw, 1.35rem);
+  color: var(--color-text-muted);
+  opacity: 0.8;
+}
+
+/* Entrance motion - same staggered rise as sign-in.css. Composition now
+   has 3 children (greeting, subtitle, actions nav) since the brand row
+   was removed. */
+.home__profile-btn,
+.home__composition > *,
+.home__coming-soon {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: home-rise var(--duration-entrance) var(--ease-gentle) forwards;
+}
+
+.home__profile-btn { animation-delay: 0ms; }
+.home__composition > *:nth-child(1) { animation-delay: 80ms; }
+.home__composition > *:nth-child(2) { animation-delay: 160ms; }
+.home__composition > *:nth-child(3) { animation-delay: 240ms; }
+.home__coming-soon { animation-delay: 340ms; }
+
+@keyframes home-rise { to { opacity: 1; transform: translateY(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .home__profile-btn, .home__composition > *, .home__coming-soon {
+    opacity: 1; transform: none; animation: none;
+  }
+}
+
+@media (min-width: 48rem) {
+  /* Mirrors settings.css's own 48rem bump (0.85rem -> 1.25rem). */
+  .home__profile-btn {
+    top: max(1.25rem, env(safe-area-inset-top));
+    right: calc(max(1.25rem, env(safe-area-inset-right)) + clamp(2.25rem, 2rem + 1vw, 2.75rem) + 0.5rem);
+  }
+}
+
+/* Desktop and up: same "fit in one view" compaction pattern welcome.css
+   uses at this breakpoint - tighten the vh ceilings for spacing (not
+   type size, which stays large for legibility) so a wide, short browser
+   window never needs to clip content. */
+@media (min-width: 64rem) {
+  .home {
+    padding-block: clamp(0.75rem, 2vh, 1.5rem);
+  }
+
+  .home__composition {
+    margin-top: clamp(2.5rem, 6vh, 3.5rem);
+  }
+
+  .home__actions { gap: clamp(0.4rem, 1.2vh, 0.9rem); }
+
+  .home__action { min-height: clamp(3.25rem, 7vh, 4.5rem); }
+
+  .home__action-icon-wrap {
+    width: clamp(2.5rem, 5vh, 3.25rem);
+    height: clamp(2.5rem, 5vh, 3.25rem);
+  }
+
+  .home__action-icon {
+    width: clamp(1.4rem, 3.2vh, 2rem);
+    height: clamp(1.4rem, 3.2vh, 2rem);
+  }
+}
+
+/* Short screens (landscape phones, short desktop windows) */
+@media (max-height: 700px) {
+  .home__composition { margin-top: clamp(2.25rem, 6vh, 3rem); }
+  .home__actions { gap: 0.5rem; }
+  .home__action { min-height: 3.25rem; padding-block: 0.5em; }
+}

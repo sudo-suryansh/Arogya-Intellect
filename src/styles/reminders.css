@@ -1,0 +1,279 @@
+/* ==========================================================================
+   Reminders
+   Two screens sharing one shell:
+   1. List screen - big "+ Add Reminder" CTA, then the saved reminders.
+   2. Step screen (title -> date -> time) - one big question at a time,
+      elder-friendly: no juggling three fields on one form.
+   Re-mounting <main key={step}> on step change replays the rise animation
+   each time, so every question feels like its own gentle screen.
+   ========================================================================== */
+
+.reminders {
+  padding: clamp(1rem, 3vh, 2.25rem) clamp(1.25rem, 4vw, 3rem) clamp(1rem, 3vh, 2rem);
+  gap: clamp(0.75rem, 2vh, 1.5rem);
+}
+
+.reminders__composition {
+  max-width: var(--content-max);
+  width: 100%;
+  height: 100%;
+  gap: clamp(0.6rem, 1.6vh, 1rem);
+  margin-top: clamp(0.5rem, 1.5vh, 1rem);
+}
+
+.reminders__back {
+  width: var(--touch-target-min);
+  height: var(--touch-target-min);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--color-pine);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color var(--duration-interaction) var(--ease-gentle);
+}
+.reminders__back svg { width: 1.5rem; height: 1.5rem; }
+.reminders__back:hover { background-color: var(--color-moss-light); }
+.reminders__back:active { transform: scale(0.94); }
+
+.reminders__title {
+  font-family: var(--font-brand);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  line-height: var(--lh-tight);
+  color: var(--color-pine);
+  letter-spacing: -0.01em;
+}
+
+.reminders__subtitle {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-description);
+  color: var(--color-text-muted);
+  max-width: 30ch;
+  line-height: var(--lh-relaxed);
+}
+
+/* ---- "+ Add Reminder" CTA - same tile language as home__action ---- */
+.reminders__add-cta {
+  gap: var(--space-sm);
+  min-height: clamp(3.5rem, 8vh, 4.5rem);
+  margin-top: clamp(0.25rem, 1vh, 0.5rem);
+  padding: 0.8em 1.4em;
+  border-radius: 1.5rem;
+  border: none;
+  background-color: var(--color-moss);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.2rem, 1.1rem + 0.4vw, 1.4rem);
+  box-shadow: 0 6px 16px var(--color-cream-shadow);
+  cursor: pointer;
+  transition:
+    background-color var(--duration-interaction) var(--ease-gentle),
+    transform var(--duration-interaction) var(--ease-gentle),
+    box-shadow var(--duration-interaction) var(--ease-gentle);
+}
+.reminders__add-cta:hover { background-color: var(--color-moss-dark); transform: translateY(-1px); }
+.reminders__add-cta:active { transform: translateY(0) scale(0.98); }
+
+.reminders__add-cta-icon {
+  font-size: 1.5em;
+  line-height: 1;
+  font-weight: 400;
+}
+
+/* ---- Saved reminders list ---- */
+.reminders__list {
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  gap: clamp(0.4rem, 1.2vh, 0.65rem);
+  list-style: none;
+  margin: 0;
+  padding: 0.1rem 0.1rem clamp(0.5rem, 2vh, 1rem);
+}
+
+.reminders__empty {
+  font-family: var(--font-display);
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: var(--space-md) 0;
+  width: 100%;
+}
+
+.reminders__item {
+  gap: var(--space-xs);
+  padding: clamp(0.6rem, 1.5vh, 0.9rem) clamp(0.85rem, 2vw, 1.1rem);
+  background-color: var(--color-bg-soft);
+  border: 1.5px solid var(--color-sand);
+  border-radius: clamp(0.85rem, 0.7rem + 0.5vw, 1.25rem);
+  box-shadow: 0 4px 12px var(--color-cream-shadow);
+  flex-shrink: 0;
+}
+
+.reminders__item-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: 2px;
+}
+.reminders__item-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--color-pine);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.reminders__item-when {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-river);
+}
+
+.reminders__remove {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color var(--duration-interaction) var(--ease-gentle), color var(--duration-interaction) var(--ease-gentle);
+}
+.reminders__remove svg { width: 1.15rem; height: 1.15rem; }
+.reminders__remove:hover { background-color: var(--color-moss-light); color: var(--color-pine); }
+.reminders__remove:active { transform: scale(0.92); }
+
+/* ==========================================================================
+   Step screens (title / date / time) - one question, full focus, big Next.
+   ========================================================================== */
+
+.reminders--step .reminders__composition--step {
+  justify-content: center;
+  height: 100%;
+}
+
+.reminders__step-count {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-river);
+  letter-spacing: 0.02em;
+}
+
+.reminders__step-body {
+  width: 100%;
+  flex: 1 1 auto;
+  gap: clamp(1rem, 3vh, 1.75rem);
+}
+
+.reminders__step-question {
+  font-family: var(--font-brand);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 1.4rem + 1.4vw, 2.25rem);
+  line-height: var(--lh-tight);
+  color: var(--color-pine);
+  letter-spacing: -0.01em;
+  max-width: 22ch;
+}
+
+.reminders__big-input {
+  width: 100%;
+  min-height: clamp(3.5rem, 8vh, 4.5rem);
+  padding: 0.6em 0.9em;
+  border-radius: clamp(1rem, 0.85rem + 0.5vw, 1.5rem);
+  border: 2px solid var(--color-sand);
+  background-color: #fff;
+  color: var(--color-pine);
+  font-family: var(--font-body);
+  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.6rem);
+  text-align: left;
+  transition:
+    border-color var(--duration-interaction) var(--ease-gentle),
+    box-shadow var(--duration-interaction) var(--ease-gentle);
+}
+
+.reminders__big-input:focus-visible {
+  outline: none;
+  border-color: var(--color-river);
+  box-shadow: 0 0 0 4px var(--color-moss-light);
+}
+
+.reminders__next {
+  width: 100%;
+  min-height: clamp(3.5rem, 8vh, 4.5rem);
+  border: none;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-moss);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-button);
+  box-shadow: 0 6px 16px var(--color-cream-shadow);
+  cursor: pointer;
+  transition:
+    background-color var(--duration-interaction) var(--ease-gentle),
+    transform var(--duration-interaction) var(--ease-gentle),
+    box-shadow var(--duration-interaction) var(--ease-gentle),
+    opacity var(--duration-interaction) var(--ease-gentle);
+}
+.reminders__next:hover:not(.is-disabled) { background-color: var(--color-moss-dark); transform: translateY(-1px); }
+.reminders__next:active:not(.is-disabled) { transform: translateY(0) scale(0.98); }
+.reminders__next.is-disabled,
+.reminders__next:disabled {
+  background-color: var(--color-sand);
+  color: var(--color-text-muted);
+  box-shadow: none;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Entrance motion - re-plays automatically since <main key={step}> forces
+   a remount on every step change (list screen too, on the way back in).
+   ========================================================================== */
+
+.reminders__composition > * {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: reminders-rise var(--duration-entrance) var(--ease-gentle) forwards;
+}
+
+.reminders__composition > *:nth-child(1) { animation-delay: 0ms; }
+.reminders__composition > *:nth-child(2) { animation-delay: 80ms; }
+.reminders__composition > *:nth-child(3) { animation-delay: 160ms; }
+.reminders__composition > *:nth-child(4) { animation-delay: 240ms; }
+
+@keyframes reminders-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reminders__composition > * {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+@media (min-width: 48rem) {
+  .reminders {
+    padding-block: clamp(1.25rem, 3vh, 2rem);
+  }
+}
+
+@media (max-height: 700px) {
+  .reminders__composition { gap: 0.5rem; margin-top: 0.5rem; }
+}

@@ -5,10 +5,14 @@ import SignIn from './pages/SignIn';
 import Language from './pages/Language';
 import Details from './pages/Details';
 import GetStarted from './pages/GetStarted';
+import Home from './pages/Home';
+import Reminders from './pages/Reminders';
 import InstallPwaPrompt from './components/InstallPwaPrompt';
 import SettingsMenu from './components/SettingsMenu';
 import ProgressTracker from './components/ProgressTracker';
 import { LanguageProvider } from './i18n/LanguageContext';
+import Remember from './pages/Remember';
+
 import './App.css';
 
 function App() {
@@ -44,6 +48,9 @@ function App() {
           <Route path="/language" element={<Language />} />
           <Route path="/details" element={<Details />} />
           <Route path="/get-started" element={<GetStarted />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/reminders" element={<Reminders />} />
+          <Route path="/remember" element={<Remember />} />
         </Routes>
       </div>
     </LanguageProvider>
