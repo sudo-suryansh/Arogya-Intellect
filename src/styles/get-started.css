@@ -63,3 +63,38 @@
   transform: translateY(0) scale(0.98);
   box-shadow: 0 4px 10px var(--color-cream-shadow);
 }
+
+.get-started__actions {
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+}
+ 
+/* Secondary/outline treatment, deliberately lower-emphasis than
+   .get-started__signout's filled moss button - this is the "never mind"
+   action, sign-out is still the one action on this screen that should
+   read as the main CTA. */
+.get-started__back {
+  min-height: var(--touch-target-min);
+  padding: 0.75em 1.75em;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--color-sand);
+  background-color: transparent;
+  color: var(--color-pine);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-button);
+  cursor: pointer;
+  transition:
+    background-color var(--duration-interaction) var(--ease-gentle),
+    border-color var(--duration-interaction) var(--ease-gentle),
+    transform var(--duration-interaction) var(--ease-gentle);
+}
+ 
+.get-started__back:hover {
+  background-color: var(--color-bg);
+  border-color: var(--color-moss);
+}
+ 
+.get-started__back:active {
+  transform: scale(0.98);
+}

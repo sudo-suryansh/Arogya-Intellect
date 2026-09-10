@@ -56,36 +56,52 @@
     "profile": "প্ৰফাইল",
     "actionsLabel": "কুইক এক্সন"
   },
-"reminders": {
-  "back": "উভতি যাওক",
-  "title": "ৰিমাইণ্ডাৰ",
-  "subtitle": "এটা ৰিমাইণ্ডাৰ ছেট কৰক, আমি আপোনাক মনত পেলাব সহায় কৰিম।",
-  "addReminder": "ৰিমাইণ্ডাৰ যোগ কৰক",
-  "stepOf": "স্তৰ {n} / 3",
-  "step1Question": "এই ৰিমাইণ্ডাৰটো কিহৰ বাবে?",
-  "step2Question": "কোনদিনা মনত পেলাব লাগে?",
-  "step3Question": "কিমান বজাত?",
-  "titlePlaceholder": "যেনে, ঔষধ খাওক",
-  "next": "পৰৱৰ্তী",
-  "save": "ৰিমাইণ্ডাৰ ছেভ কৰক",
-  "listLabel": "আপোনাৰ ৰিমাইণ্ডাৰসমূহ",
-  "emptyState": "এতিয়ালৈকে কোনো ৰিমাইণ্ডাৰ নাই। যোগ কৰিবলৈ ওপৰত টেপ কৰক।",
-  "removeLabel": "ৰিমাইণ্ডাৰ আঁতৰাওক"
-},
-"remember": {
-  "back": "উভতি যাওক",
-  "stepOf": "প্ৰশ্ন {n} / 2",
-  "photoQuestion": "এইটো কি?",
-  "photoPlaceholder": "আপোনাৰ উত্তৰ লিখক",
-  "check": "পৰীক্ষা কৰক",
-  "tryAgain": "কিছু ভুল হ'ল — পুনৰ ভালদৰে চাই চেষ্টা কৰক।",
-  "gandhiQuestion": "গান্ধী জয়ন্তী কেতিয়া?",
-  "gandhi": {
-    "oct2": "২ অক্টোবৰ",
-    "aug15": "১৫ আগষ্ট",
-    "jan26": "২৬ জানুৱাৰী",
-    "nov14": "১৪ নৱেম্বৰ"
+  "reminders": {
+    "back": "উভতি যাওক",
+    "title": "ৰিমাইণ্ডাৰ",
+    "subtitle": "এটা ৰিমাইণ্ডাৰ ছেট কৰক, আমি আপোনাক মনত পেলাব সহায় কৰিম।",
+    "addReminder": "ৰিমাইণ্ডাৰ যোগ কৰক",
+    "stepOf": "স্তৰ {n} / 3",
+    "step1Question": "এই ৰিমাইণ্ডাৰটো কিহৰ বাবে?",
+    "step2Question": "কোনদিনা মনত পেলাব লাগে?",
+    "step3Question": "কিমান বজাত?",
+    "titlePlaceholder": "যেনে, ঔষধ খাওক",
+    "next": "পৰৱৰ্তী",
+    "save": "ৰিমাইণ্ডাৰ ছেভ কৰক",
+    "listLabel": "আপোনাৰ ৰিমাইণ্ডাৰসমূহ",
+    "emptyState": "এতিয়ালৈকে কোনো ৰিমাইণ্ডাৰ নাই। যোগ কৰিবলৈ ওপৰত টেপ কৰক।",
+    "removeLabel": "ৰিমাইণ্ডাৰ আঁতৰাওক"
   },
-  "wellDone": "বহুত ভাল!"
-}
+  "remember": {
+    "back": "উভতি যাওক",
+    "stepOf": "প্ৰশ্ন {n}, সৰ্বমুঠ {total}",
+    "photoQuestion": "এইটো কি?",
+    "photoPlaceholder": "আপোনাৰ উত্তৰ লিখক",
+    "check": "পৰীক্ষা কৰক",
+    "tryAgain": "কিছু ভুল হ'ল — পুনৰ ভালদৰে চাই চেষ্টা কৰক।",
+    "gandhiQuestion": "গান্ধী জয়ন্তী কেতিয়া?",
+    "gandhi": {
+      "oct2": "২ অক্টোবৰ",
+      "aug15": "১৫ আগষ্ট",
+      "jan26": "২৬ জানুৱাৰী",
+      "nov14": "১৪ নৱেম্বৰ"
+    },
+    "wellDone": "বহুত ভাল!",
+    "scoreLine": "{total} ৰ ভিতৰত {score}",
+    "firstSession": "এইটো আপোনাৰ প্ৰথমবাৰ খেলা - ভাল হৈছে!",
+    "sameAsLastTime": "যিমান আগৰবাৰ আছিল সিমানেই।",
+    "improvedBy": "আগৰবাৰতকৈ {n} ভাল!",
+    "droppedBy": "আগৰবাৰতকৈ {n} কম।",
+    "nationalAnimalQuestion": "ভাৰতৰ ৰাষ্ট্ৰীয় জীৱ-জন্তু কি?",
+    "nationalAnimalPlaceholder": "আপোনাৰ উত্তৰ লিখক",
+    "capitalQuestion": "ভাৰতৰ ৰাজধানী ক'ত?",
+    "capital": {
+      "newDelhi": "নতুন দিল্লী",
+      "mumbai": "মুম্বাই",
+      "kolkata": "কলকাতা",
+      "chennai": "চেন্নাই"
+    },
+    "nationalBirdQuestion": "ভাৰতৰ ৰাষ্ট্ৰীয় চৰাই কি?",
+    "nationalBirdPlaceholder": "আপোনাৰ উত্তৰ লিখক"
+  }
 }

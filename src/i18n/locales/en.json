@@ -56,36 +56,52 @@
     "profile": "Profile",
     "actionsLabel": "Quick actions"
   },
-"reminders": {
-  "back": "Back",
-  "title": "Reminders",
-  "subtitle": "Set a reminder and we'll help you remember.",
-  "addReminder": "Add Reminder",
-  "stepOf": "Step {n} of 3",
-  "step1Question": "What's this reminder for?",
-  "step2Question": "Which day should we remind you?",
-  "step3Question": "What time?",
-  "titlePlaceholder": "e.g. Take medicine",
-  "next": "Next",
-  "save": "Save reminder",
-  "listLabel": "Your reminders",
-  "emptyState": "No reminders yet. Tap Add Reminder to make one.",
-  "removeLabel": "Remove reminder"
-},
-"remember": {
-  "back": "Back",
-  "stepOf": "Question {n} of 2",
-  "photoQuestion": "What is this?",
-  "photoPlaceholder": "Type your answer",
-  "check": "Check",
-  "tryAgain": "Not quite — take another look and try again.",
-  "gandhiQuestion": "When is Gandhi Jayanti?",
-  "gandhi": {
-    "oct2": "2 October",
-    "aug15": "15 August",
-    "jan26": "26 January",
-    "nov14": "14 November"
+  "reminders": {
+    "back": "Back",
+    "title": "Reminders",
+    "subtitle": "Set a reminder and we'll help you remember.",
+    "addReminder": "Add Reminder",
+    "stepOf": "Step {n} of 3",
+    "step1Question": "What's this reminder for?",
+    "step2Question": "Which day should we remind you?",
+    "step3Question": "What time?",
+    "titlePlaceholder": "e.g. Take medicine",
+    "next": "Next",
+    "save": "Save reminder",
+    "listLabel": "Your reminders",
+    "emptyState": "No reminders yet. Tap Add Reminder to make one.",
+    "removeLabel": "Remove reminder"
   },
-  "wellDone": "Well done!"
-}
+  "remember": {
+    "back": "Back",
+    "stepOf": "Question {n} of {total}",
+    "photoQuestion": "What is this?",
+    "photoPlaceholder": "Type your answer",
+    "check": "Check",
+    "tryAgain": "Not quite — take another look and try again.",
+    "gandhiQuestion": "When is Gandhi Jayanti?",
+    "gandhi": {
+      "oct2": "2 October",
+      "aug15": "15 August",
+      "jan26": "26 January",
+      "nov14": "14 November"
+    },
+    "wellDone": "Well done!",
+    "scoreLine": "{score} out of {total}",
+    "firstSession": "Your first time playing - nice work!",
+    "sameAsLastTime": "Same as last time.",
+    "improvedBy": "That's {n} better than last time!",
+    "droppedBy": "That's {n} fewer than last time.",
+    "nationalAnimalQuestion": "What is the national animal of India?",
+    "nationalAnimalPlaceholder": "Type your answer",
+    "capitalQuestion": "What is the capital of India?",
+    "capital": {
+      "newDelhi": "New Delhi",
+      "mumbai": "Mumbai",
+      "kolkata": "Kolkata",
+      "chennai": "Chennai"
+    },
+    "nationalBirdQuestion": "What is the national bird of India?",
+    "nationalBirdPlaceholder": "Type your answer"
+  }
 }

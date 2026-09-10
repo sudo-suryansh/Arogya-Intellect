@@ -56,36 +56,52 @@
     "profile": "प्रोफ़ाइल",
     "actionsLabel": "क्विक एक्शन"
   },
-"reminders": {
-  "back": "वापस",
-  "title": "रिमाइंडर",
-  "subtitle": "एक रिमाइंडर सेट करें, हम आपको याद दिलाने में मदद करेंगे।",
-  "addReminder": "रिमाइंडर जोड़ें",
-  "stepOf": "चरण {n} / 3",
-  "step1Question": "यह रिमाइंडर किसके लिए है?",
-  "step2Question": "किस दिन याद दिलाएं?",
-  "step3Question": "किस समय?",
-  "titlePlaceholder": "जैसे, दवा लें",
-  "next": "आगे",
-  "save": "रिमाइंडर सहेजें",
-  "listLabel": "आपके रिमाइंडर",
-  "emptyState": "अभी तक कोई रिमाइंडर नहीं है। जोड़ने के लिए ऊपर टैप करें।",
-  "removeLabel": "रिमाइंडर हटाएं"
-},
-"remember": {
-  "back": "वापस",
-  "stepOf": "प्रश्न {n} / 2",
-  "photoQuestion": "यह क्या है?",
-  "photoPlaceholder": "अपना उत्तर लिखें",
-  "check": "जांचें",
-  "tryAgain": "थोड़ा गलत है — फिर से ध्यान से देखें और प्रयास करें।",
-  "gandhiQuestion": "गांधी जयंती कब है?",
-  "gandhi": {
-    "oct2": "2 अक्टूबर",
-    "aug15": "15 अगस्त",
-    "jan26": "26 जनवरी",
-    "nov14": "14 नवंबर"
+  "reminders": {
+    "back": "वापस",
+    "title": "रिमाइंडर",
+    "subtitle": "एक रिमाइंडर सेट करें, हम आपको याद दिलाने में मदद करेंगे।",
+    "addReminder": "रिमाइंडर जोड़ें",
+    "stepOf": "चरण {n} / 3",
+    "step1Question": "यह रिमाइंडर किसके लिए है?",
+    "step2Question": "किस दिन याद दिलाएं?",
+    "step3Question": "किस समय?",
+    "titlePlaceholder": "जैसे, दवा लें",
+    "next": "आगे",
+    "save": "रिमाइंडर सहेजें",
+    "listLabel": "आपके रिमाइंडर",
+    "emptyState": "अभी तक कोई रिमाइंडर नहीं है। जोड़ने के लिए ऊपर टैप करें।",
+    "removeLabel": "रिमाइंडर हटाएं"
   },
-  "wellDone": "बहुत बढ़िया!"
-}
+  "remember": {
+    "back": "वापस",
+    "stepOf": "प्रश्न {n} में से {total}",
+    "photoQuestion": "यह क्या है?",
+    "photoPlaceholder": "अपना उत्तर लिखें",
+    "check": "जांचें",
+    "tryAgain": "थोड़ा गलत है — फिर से ध्यान से देखें और प्रयास करें।",
+    "gandhiQuestion": "गांधी जयंती कब है?",
+    "gandhi": {
+      "oct2": "2 अक्टूबर",
+      "aug15": "15 अगस्त",
+      "jan26": "26 जनवरी",
+      "nov14": "14 नवंबर"
+    },
+    "wellDone": "बहुत बढ़िया!",
+    "scoreLine": "{total} में से {score}",
+    "firstSession": "यह आपकी पहली बार है - बहुत बढ़िया!",
+    "sameAsLastTime": "पिछली बार जितना ही स्कोर।",
+    "improvedBy": "पिछली बार से {n} बेहतर!",
+    "droppedBy": "पिछली बार से {n} कम।",
+    "nationalAnimalQuestion": "भारत का राष्ट्रीय पशु कौन सा है?",
+    "nationalAnimalPlaceholder": "अपना उत्तर लिखें",
+    "capitalQuestion": "भारत की राजधानी क्या है?",
+    "capital": {
+      "newDelhi": "नई दिल्ली",
+      "mumbai": "मुंबई",
+      "kolkata": "कोलकाता",
+      "chennai": "चेन्नई"
+    },
+    "nationalBirdQuestion": "भारत का राष्ट्रीय पक्षी कौन सा है?",
+    "nationalBirdPlaceholder": "अपना उत्तर लिखें"
+  }
 }
