@@ -35,6 +35,44 @@
     },
     "continue": "Continue"
   },
+  "caregiver": {
+    "title": "Add a Caregiver",
+    "subtitle": "We'll only reach out to them if you ever need help.",
+    "nameLabel": "Caregiver's Name",
+    "namePlaceholder": "e.g. Priya Sharma",
+    "numberLabel": "Caregiver's Phone Number",
+    "numberPlaceholder": "10-digit mobile number",
+    "sendOtp": "Send OTP",
+    "otpSentTo": "We've sent a code to",
+    "otpLabel": "Enter OTP",
+    "otpPlaceholder": "4-digit code",
+    "otpHint": "Demo build - use 0000",
+    "otpError": "That code didn't match. Please try again.",
+    "verify": "Verify & Continue",
+    "changeNumber": "Change number",
+    "skip": "Skip for now"
+  },
+  "trustedContact": {
+    "title": "Add a Trusted Contact",
+    "subtitle": "A friend or neighbour who can check in on you.",
+    "nameLabel": "Their Name",
+    "namePlaceholder": "e.g. Ramesh Das",
+    "numberLabel": "Their Phone Number",
+    "numberPlaceholder": "10-digit mobile number",
+    "sendOtp": "Send OTP",
+    "otpSentTo": "We've sent a code to",
+    "otpLabel": "Enter OTP",
+    "otpPlaceholder": "4-digit code",
+    "otpHint": "Demo build - use 0000",
+    "otpError": "That code didn't match. Please try again.",
+    "verify": "Verify & Continue",
+    "changeNumber": "Change number"
+  },
+  "ashaIntro": {
+    "reassurance": "Don't worry, we got ASHA for you.",
+    "imageAlt": "An ASHA health worker ready to help.",
+    "continue": "Continue"
+  },
   "getStarted": {
     "eyebrow": "Coming next",
     "title": "This is where the app begins",
@@ -52,6 +90,9 @@
     "games": "Games",
     "reminders": "Reminders",
     "remember": "Remember?",
+    "arogyaAi": "Arogya AI",
+    "sos": "Hold to Call for Help",
+    "sosHoldLabel": "Press and hold for 3 seconds to call for help",
     "comingSoon": "More features coming in the next version",
     "profile": "Profile",
     "actionsLabel": "Quick actions"

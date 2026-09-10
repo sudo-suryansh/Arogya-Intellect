@@ -1,0 +1,96 @@
+/* ==========================================================================
+   ASHA reassurance screen
+   Same "fit in one screen, no scroll" intent as welcome.css/language.css.
+   ========================================================================== */
+
+.asha-intro {
+  height: 100dvh;
+  overflow: hidden;
+  padding: var(--space-lg) var(--space-md);
+}
+
+.asha-intro__composition {
+  max-width: var(--content-max);
+  gap: var(--space-md);
+}
+
+.asha-intro__text {
+  font-family: var(--font-brand);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 1.3rem + 1vw, 2.25rem);
+  line-height: var(--lh-tight);
+  color: var(--color-pine);
+  letter-spacing: -0.01em;
+  opacity: 0;
+  animation: asha-intro-rise var(--duration-entrance) var(--ease-gentle) forwards;
+}
+
+.asha-intro__image-wrap {
+  width: min(100%, 22rem);
+  opacity: 0;
+  animation: asha-intro-rise var(--duration-entrance) var(--ease-gentle) forwards;
+  animation-delay: 250ms;
+}
+
+.asha-intro__image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-inline: auto;
+}
+
+.asha-intro__continue {
+  margin-top: clamp(0.2rem, 0.6vh, 0.5rem);
+  gap: 0.5em;
+  min-height: var(--touch-target-min);
+  padding: 0.85em 2.25em;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-moss);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-button);
+  box-shadow: 0 6px 16px var(--color-cream-shadow);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: asha-intro-rise var(--duration-entrance) var(--ease-gentle) forwards;
+  animation-delay: 500ms;
+  transition:
+    background-color var(--duration-interaction) var(--ease-gentle),
+    transform var(--duration-interaction) var(--ease-gentle),
+    box-shadow var(--duration-interaction) var(--ease-gentle);
+}
+
+.asha-intro__continue:hover {
+  background-color: var(--color-moss-dark);
+  box-shadow: 0 8px 20px var(--color-cream-shadow);
+  transform: translateY(-1px);
+}
+
+.asha-intro__continue:active { transform: translateY(0) scale(0.98); }
+
+.asha-intro__continue-arrow { transition: transform var(--duration-interaction) var(--ease-gentle); }
+.asha-intro__continue:hover .asha-intro__continue-arrow { transform: translateX(3px); }
+
+@keyframes asha-intro-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .asha-intro__text,
+  .asha-intro__image-wrap,
+  .asha-intro__continue {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (min-width: 48rem) {
+  .asha-intro { padding: var(--space-xl) var(--space-lg); }
+  .asha-intro__composition { max-width: 34rem; gap: var(--space-lg); }
+}

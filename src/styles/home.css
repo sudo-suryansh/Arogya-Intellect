@@ -18,6 +18,7 @@
    ========================================================================== */
 
 .home {
+  overflow-y: auto;
   padding: clamp(1rem, 3vh, 2.25rem) clamp(1.25rem, 4vw, 3rem) clamp(1rem, 3vh, 2rem);
   gap: clamp(0.75rem, 2vh, 1.5rem);
 }
@@ -121,8 +122,122 @@
 .home__action-label { flex: 1; text-align: left; }
 .home__action-chevron { width: 1.4rem; height: 1.4rem; color: var(--color-text-muted); flex-shrink: 0; }
 
-.home__coming-soon {
+/* ---- Hold-to-call SOS ----
+   Idle state is a solid red pill (always legible, matches the rest of
+   home__action's card language). Holding it sweeps a translucent white
+   "water level" across from the left via .home__sos-fill, whose
+   transform: scaleX() is driven every animation frame by a --sos-progress
+   custom property set in Home.tsx - not a CSS transition, so it tracks
+   the hold 1:1. Releasing early swaps in a transition (see cancelHold in
+   Home.tsx) so the drain-back reads as a smooth "un-fill" instead of a
+   snap. Reaching full triggers .is-complete's pulse just before the
+   redirect. */
+.home__sos {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  max-width: 36rem;
+  min-height: clamp(3.75rem, 8.5vh, 5.25rem);
+  padding: clamp(0.6em, 1.4vh, 1.1em) 1.4em;
   margin-top: auto;
+  margin-bottom: clamp(0.35rem, 1vh, 0.75rem);
+  border: 0;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, #E24A3D, #B32C1F);
+  box-shadow: 0 8px 20px rgba(179, 44, 31, 0.35);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.55rem);
+  touch-action: none; /* stop the page from scrolling while holding on mobile */
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  transition:
+    transform var(--duration-interaction) var(--ease-gentle),
+    box-shadow var(--duration-interaction) var(--ease-gentle);
+}
+
+.home__sos.is-holding {
+  transform: scale(0.99);
+  box-shadow: 0 10px 26px rgba(179, 44, 31, 0.5);
+}
+
+/* ---- Full-screen circular reveal ----
+   Position: fixed covers the whole viewport (not just the button), z-index
+   sits above everything else in the app including SettingsMenu and
+   InstallPwaPrompt. clip-path circle() radius is driven by --sos-progress
+   (0 to 1) times the precomputed --sos-max-radius - both set from
+   Home.tsx on hold start/every frame. pointer-events: none so it never
+   blocks the button underneath from continuing to receive the hold. */
+.home__sos-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--sos-origin-x, 50%) var(--sos-origin-y, 50%),
+    #E85A4D,
+    #A8281C 75%
+  );
+  clip-path: circle(
+    calc(var(--sos-max-radius, 0px) * var(--sos-progress, 0))
+    at var(--sos-origin-x, 50%) var(--sos-origin-y, 50%)
+  );
+  will-change: clip-path;
+}
+
+/* Brief brightening flash right as the circle finishes covering the
+   screen, just before the route changes underneath it. */
+.home__sos.is-complete ~ .home__sos-overlay {
+  animation: home-sos-flash 320ms ease-out;
+}
+
+@keyframes home-sos-flash {
+  0% { filter: brightness(1); }
+  40% { filter: brightness(1.35); }
+  100% { filter: brightness(1); }
+}
+
+
+
+.home__sos-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(2.75rem, 6vh, 3.75rem);
+  height: clamp(2.75rem, 6vh, 3.75rem);
+  border-radius: 1.1rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+/* No color filter, same rule as home__action-icon - sos-call.svg should
+   already be white/light enough to read on the red fill. */
+.home__sos-icon {
+  width: clamp(1.6rem, 3.8vh, 2.25rem);
+  height: clamp(1.6rem, 3.8vh, 2.25rem);
+  filter: brightness(0) invert(1); /* forces sos-call.svg to solid white, overriding the no-filter convention used elsewhere since this one's meant to read as a plain white glyph */
+}
+
+.home__sos-label { flex: 1; text-align: left; }
+.home__sos-chevron { width: 1.4rem; height: 1.4rem; color: rgba(255, 255, 255, 0.85); flex-shrink: 0; }
+
+.home__sos.is-complete {
+  animation: home-sos-pulse 480ms ease-out;
+}
+
+@keyframes home-sos-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(226, 74, 61, 0.55); }
+  100% { box-shadow: 0 0 0 26px rgba(226, 74, 61, 0); }
+}
+
+.home__coming-soon {
+  width: 100%;
+  max-width: 36rem;
+  margin: 0;
   font-family: var(--font-display);
   font-weight: 500;
   font-size: clamp(1.1rem, 1rem + 0.35vw, 1.35rem);
@@ -134,7 +249,8 @@
    has 3 children (greeting, subtitle, actions nav) since the brand row
    was removed. */
 .home__profile-btn,
-.home__composition > *,
+.home__composition > *, 
+.home__sos,
 .home__coming-soon {
   opacity: 0;
   transform: translateY(10px);
@@ -145,7 +261,8 @@
 .home__composition > *:nth-child(1) { animation-delay: 80ms; }
 .home__composition > *:nth-child(2) { animation-delay: 160ms; }
 .home__composition > *:nth-child(3) { animation-delay: 240ms; }
-.home__coming-soon { animation-delay: 340ms; }
+.home__sos { animation-delay: 320ms; }
+.home__coming-soon { animation-delay: 400ms; }
 
 @keyframes home-rise { to { opacity: 1; transform: translateY(0); } }
 

@@ -1,0 +1,134 @@
+/* ==========================================================================
+   Shared name + phone + OTP form
+   Used inside CaregiverDetails and TrustedContact - page-level CSS handles
+   layout/spacing around it, this file only styles the form itself so it
+   isn't duplicated per page.
+   ========================================================================== */
+
+.contact-otp-form {
+  width: 100%;
+  gap: var(--space-sm);
+  margin-top: var(--space-xs);
+  text-align: left;
+}
+
+.contact-otp-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  width: 100%;
+}
+
+.contact-otp-form__label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-tagline);
+  color: var(--color-pine);
+}
+
+.contact-otp-form__input {
+  width: 100%;
+  min-height: var(--touch-target-min);
+  padding: 0.75em 1em;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--color-sand);
+  background-color: var(--color-bg-soft);
+  color: var(--color-pine);
+  font-family: var(--font-body);
+  font-size: var(--fs-description);
+  transition:
+    border-color var(--duration-interaction) var(--ease-gentle),
+    box-shadow var(--duration-interaction) var(--ease-gentle);
+}
+
+.contact-otp-form__input:focus-visible {
+  outline: none;
+  border-color: var(--color-river);
+  box-shadow: 0 0 0 3px var(--color-moss-light);
+}
+
+.contact-otp-form__otp-input {
+  letter-spacing: 0.5em;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.contact-otp-form__otp-sent {
+  font-family: var(--font-body);
+  font-size: var(--fs-tagline);
+  color: var(--color-text-muted);
+}
+
+.contact-otp-form__otp-hint {
+  font-family: var(--font-body);
+  font-size: 0.9em;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.contact-otp-form__otp-error {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-tagline);
+  color: var(--color-alert);
+}
+
+.contact-otp-form__cta {
+  min-height: var(--touch-target-min);
+  padding: 0.9em 2.1em;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-moss);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-button);
+  box-shadow: 0 6px 16px var(--color-cream-shadow);
+  align-self: center;
+  transition:
+    background-color var(--duration-interaction) var(--ease-gentle),
+    transform var(--duration-interaction) var(--ease-gentle),
+    box-shadow var(--duration-interaction) var(--ease-gentle),
+    opacity var(--duration-interaction) var(--ease-gentle);
+}
+
+.contact-otp-form__cta:hover {
+  background-color: var(--color-moss-dark);
+  transform: translateY(-1px);
+}
+
+.contact-otp-form__cta:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.contact-otp-form__cta.is-disabled,
+.contact-otp-form__cta:disabled {
+  background-color: var(--color-sand);
+  color: var(--color-text-muted);
+  box-shadow: none;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.contact-otp-form__link-btn,
+.contact-otp-form__skip {
+  align-self: center;
+  border: 0;
+  background: none;
+  padding: 0.4em;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-tagline);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.contact-otp-form__link-btn {
+  color: var(--color-river);
+}
+
+.contact-otp-form__skip {
+  margin-top: var(--space-2xs);
+  color: var(--color-text-muted);
+}

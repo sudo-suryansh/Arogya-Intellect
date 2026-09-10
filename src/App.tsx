@@ -4,6 +4,9 @@ import Welcome from './pages/Welcome';
 import SignIn from './pages/SignIn';
 import Language from './pages/Language';
 import Details from './pages/Details';
+import CaregiverDetails from './pages/CaregiverDetails';   
+import AshaIntro from './pages/AshaIntro';                 // + new
+import TrustedContact from './pages/TrustedContact';  
 import GetStarted from './pages/GetStarted';
 import Home from './pages/Home';
 import Reminders from './pages/Reminders';
@@ -47,6 +50,9 @@ function App() {
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/language" element={<Language />} />
           <Route path="/details" element={<Details />} />
+          <Route path="/caregiver" element={<CaregiverDetails />} />     
+          <Route path="/asha-intro" element={<AshaIntro />} />             
+          <Route path="/trusted-contact" element={<TrustedContact />} />
           <Route path="/get-started" element={<GetStarted />} />
           <Route path="/home" element={<Home />} />
           <Route path="/reminders" element={<Reminders />} />

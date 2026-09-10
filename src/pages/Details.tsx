@@ -88,7 +88,7 @@ export default function Details() {
           </div>
 
           <Link
-            to={isComplete ? '/home' : '#'}
+            to={isComplete ? '/caregiver' : '#'}
             aria-disabled={!isComplete}
             className={`details__continue inline-flex items-center justify-center no-underline${
               isComplete ? '' : ' is-disabled'

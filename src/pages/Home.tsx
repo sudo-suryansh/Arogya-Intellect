@@ -1,10 +1,14 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import { useNavigate } from 'react-router-dom';
 import gamesIcon from '../assets/games-icon.svg';
 import remindersIcon from '../assets/reminders-icon.svg';
 import rememberIcon from '../assets/remember-icon.svg';
+import arogyaAiIcon from '../assets/arogya-ai.svg';
+import sosIcon from '../assets/sos-call.svg';
 import '../styles/home.css';
+
+const SOS_HOLD_MS = 3000;
 
 // Reads the name Details.tsx now stashes in localStorage on Continue.
 // Falls back to a name-less greeting if it's not there yet.
@@ -45,14 +49,99 @@ export default function Home() {
     { key: 'games', icon: gamesIcon, labelKey: 'home.games', path: '/get-started' },
     { key: 'reminders', icon: remindersIcon, labelKey: 'home.reminders', path: '/reminders' },
     { key: 'remember', icon: rememberIcon, labelKey: 'home.remember', path: '/remember' },
+    { key: 'arogya-ai', icon: arogyaAiIcon, labelKey: 'home.arogyaAi', path: '/get-started' },
   ] as const;
+
+  // ---- Hold-to-call SOS ---------------------------------------------
+  // Fill is driven straight on the DOM node via a CSS custom property
+  // every animation frame (not React state) so the 3s hold stays at
+  // 60fps with no re-render cost. React state only tracks the coarse
+  // "is anyone holding / did it just complete" flags the UI needs.
+  const sosFillRef = useRef<HTMLSpanElement>(null);
+  const sosOverlayRef = useRef<HTMLDivElement>(null);
+  const sosButtonRef = useRef<HTMLButtonElement>(null);
+  const rafRef = useRef<number | null>(null);
+  const startRef = useRef<number | null>(null);
+  const hasNavigatedRef = useRef(false);
+  const [isHolding, setIsHolding] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
+
+  const setFillProgress = (value: number) => {
+    sosOverlayRef.current?.style.setProperty('--sos-progress', String(value));
+  };
+
+  const tick = (timestamp: number) => {
+    if (startRef.current === null) startRef.current = timestamp;
+    const elapsed = timestamp - startRef.current;
+    const progress = Math.min(elapsed / SOS_HOLD_MS, 1);
+    setFillProgress(progress);
+
+    if (progress >= 1) {
+      if (!hasNavigatedRef.current) {
+        hasNavigatedRef.current = true;
+        setIsComplete(true);
+        // Small delay so the completion pulse is actually visible
+        // before the route change unmounts this page.
+        window.setTimeout(() => navigate('/get-started'), 320);
+      }
+      return;
+    }
+    rafRef.current = requestAnimationFrame(tick);
+  };
+
+  const startHold = () => {
+    if (hasNavigatedRef.current) return;
+     // Anchor the circular reveal to wherever the SOS button actually sits
+    // (it can be scrolled anywhere on this page), and size it to the
+    // furthest viewport corner so full-cover always looks complete
+    // regardless of screen size or where the button is.
+    const btn = sosButtonRef.current;
+    const overlay = sosOverlayRef.current;
+    if (btn && overlay) {
+      const rect = btn.getBoundingClientRect();
+      const originX = rect.left + rect.width / 2;
+      const originY = rect.top + rect.height / 2;
+      const maxRadius = Math.hypot(
+        Math.max(originX, window.innerWidth - originX),
+        Math.max(originY, window.innerHeight - originY),
+      );
+      overlay.style.setProperty('--sos-origin-x', `${originX}px`);
+      overlay.style.setProperty('--sos-origin-y', `${originY}px`);
+      overlay.style.setProperty('--sos-max-radius', `${maxRadius}px`);
+      overlay.style.transition = 'none';
+    }
+    startRef.current = null;
+    setIsHolding(true);
+    rafRef.current = requestAnimationFrame(tick);
+  };
+
+  const cancelHold = () => {
+    if (rafRef.current !== null) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
+    startRef.current = null;
+    setIsHolding(false);
+    if (sosOverlayRef.current) {
+      sosOverlayRef.current.style.transition = 'clip-path 320ms cubic-bezier(0.22, 0.61, 0.36, 1)';
+      setFillProgress(0);
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
   return (
-    <main className="home min-h-dvh h-dvh overflow-hidden flex flex-col items-center relative">
+    <main className="home min-h-dvh flex flex-col items-center relative">
       {/* Fixed top-right, sized and positioned to match SettingsMenu's
           gear exactly (same clamp() size, same top offset) and sit just
           to its left - see the comment in home.css if it ever drifts. */}
       <button
         type="button"
+        ref={sosButtonRef}
         className="home__profile-btn"
         aria-label={t('home.profile')}
         onClick={() => navigate('/get-started')}
@@ -62,6 +151,14 @@ export default function Home() {
           <path d="M4.5 19.2c1.4-3.3 4.3-5 7.5-5s6.1 1.7 7.5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
         </svg>
       </button>
+       {/* Full-screen circular reveal, anchored to the SOS button's
+           current position. clip-path radius is driven by --sos-progress
+           every animation frame from startHold/tick above - the same
+           0-to-1 hold value, now expanding a circle instead of filling a
+           bar. Fixed + high z-index so it covers the whole page
+           (SettingsMenu, InstallPwaPrompt, everything) regardless of
+           scroll position. */}
+       <div className="home__sos-overlay" ref={sosOverlayRef} aria-hidden="true" />
 
       {/* No brand row here on purpose - just the greeting, left-aligned. */}
       <div className="home__composition flex flex-col items-start text-left w-full">
@@ -86,7 +183,36 @@ export default function Home() {
             </button>
           ))}
         </nav>
+
       </div>
+
+      {/* Keep the emergency action at the bottom, immediately above the
+          lower-priority coming-soon message. */}
+      <button
+        type="button"
+        className={`home__sos${isHolding ? ' is-holding' : ''}${isComplete ? ' is-complete' : ''}`}
+        aria-label={t('home.sosHoldLabel')}
+        onPointerDown={startHold}
+        onPointerUp={cancelHold}
+        onPointerLeave={cancelHold}
+        onPointerCancel={cancelHold}
+        onContextMenu={(e) => e.preventDefault()}
+        onKeyDown={(e) => {
+          if ((e.key === 'Enter' || e.key === ' ') && !e.repeat) startHold();
+        }}
+        onKeyUp={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') cancelHold();
+        }}
+      >
+        <span className="home__sos-fill" ref={sosFillRef} aria-hidden="true" />
+        <span className="home__sos-icon-wrap">
+          <img className="home__sos-icon" src={sosIcon} alt="" />
+        </span>
+        <span className="home__sos-label">{t('home.sos')}</span>
+        <svg className="home__sos-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
 
       <p className="home__coming-soon">{t('home.comingSoon')}</p>
     </main>

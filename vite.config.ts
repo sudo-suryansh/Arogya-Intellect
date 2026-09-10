@@ -22,6 +22,13 @@ export default defineConfig({
       // there too (favicon.ico, robots.txt, etc).
       includeAssets: ['icons/apple-touch-icon.png'],
 
+      // The page illustrations and imported SVG icons are emitted into
+      // hashed asset files. Include those files in Workbox's offline cache
+      // so routes opened offline do not lose their imagery.
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,webp}'],
+      },
+
       // Ported straight from the old public/manifest.json - delete that
       // file once this is in, the plugin generates manifest.webmanifest
       // from this at build time and injects the <link rel="manifest">
