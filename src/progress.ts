@@ -2,9 +2,16 @@
 // Onboarding-flow resume tracking
 //
 // Persists how far the user has gotten through the app's linear onboarding
-// flow (Welcome -> SignIn -> Language -> Details -> GetStarted, in that
-// order) so that reopening the app continues from the right page instead
-// of restarting at Welcome every time.
+// flow (Welcome -> SignIn -> Language -> Details -> Home, in that order)
+// so that reopening the app continues from the right page instead of
+// restarting at Welcome every time.
+//
+// Home is the terminal step, not GetStarted - GetStarted is now a Profile
+// page reached via an icon tap from Home (see its own comment), not a
+// forward step in this flow, so it's deliberately left out of this array.
+// Same for any other page reached FROM Home (Reminders, Remember, etc.) -
+// once someone's reached Home, that's the correct resume point regardless
+// of which of Home's sub-pages they were last on.
 //
 // This tracks POSITION ONLY - never form data. No name, age, gender, or
 // which language was picked lives here (language has its own persistence
@@ -12,12 +19,14 @@
 // UI language, not onboarding position).
 //
 // Adding a new page to the flow later: add its path to ROUTE_ORDER below,
-// in the same position it appears in App.tsx's <Routes> block. That's the
-// only change needed anywhere - ProgressTracker.tsx and the resume
-// redirect both derive everything from this one array.
+// in the same position it appears in App.tsx's <Routes> block - but only
+// if it's a forward step in onboarding (like Details), not a page reached
+// by tapping around once already at Home. That's the only change needed
+// anywhere - ProgressTracker.tsx and the resume redirect both derive
+// everything from this one array.
 // ==========================================================================
 
-export const ROUTE_ORDER = ['/', '/sign-in', '/language', '/details', '/get-started'] as const;
+export const ROUTE_ORDER = ['/', '/sign-in', '/language', '/details', '/home'] as const;
 
 const STORAGE_KEY = 'fast6.furthestStepIndex';
 

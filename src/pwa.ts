@@ -1,19 +1,3 @@
-// Registers the service worker so the shell (currently just the welcome
-// page and its assets) is available offline once visited. Fails silently
-// on browsers without support - the app still works fully online.
-//
-// Kept as a manual registration (matching the original static prototype)
-// until this is migrated to vite-plugin-pwa, per the migration plan.
-export function registerServiceWorker(): void {
-  if (!('serviceWorker' in navigator)) return;
-
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js', { scope: '/' }).catch((err) => {
-      console.warn('Service worker registration failed:', err);
-    });
-  });
-}
-
 // ==========================================================================
 // Device + PWA install-state helpers
 //
@@ -21,6 +5,12 @@ export function registerServiceWorker(): void {
 //   - Desktop                -> never prompt, app just works in-browser.
 //   - Mobile, browser tab    -> prompt to install.
 //   - Mobile, already a PWA  -> never prompt, already installed.
+//
+// Service worker registration itself now lives entirely in
+// vite-plugin-pwa's auto-injected script (see vite.config.ts's
+// VitePWA({ registerType: 'autoUpdate' }) - injectRegister defaults to
+// 'auto', so nothing in this file or main.tsx needs to call
+// navigator.serviceWorker.register() manually anymore.
 // ==========================================================================
 
 export function isMobileDevice(): boolean {
